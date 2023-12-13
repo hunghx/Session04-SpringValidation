@@ -16,9 +16,6 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity<?> handlerValidateSignUpForm(MethodArgumentNotValidException e) {
         // xử lí lỗi
         Map<String, String> map = new HashMap<>();
-        if (!e.getBindingResult().hasFieldErrors()){
-            return new ResponseEntity<>(e.getBindingResult().getAllErrors().get(0).getDefaultMessage(), HttpStatus.BAD_REQUEST);
-        }
         e.getBindingResult().getFieldErrors().forEach(err ->
                 map.put(err.getField(), err.getDefaultMessage()));
 
